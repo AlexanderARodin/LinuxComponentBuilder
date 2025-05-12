@@ -21,11 +21,6 @@ kernel.all:
 
 
 
-# ################
-# Any submodule
-%:
-	@echo [ AUTODETECTION: $@ ]
-	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
 
 
 # ################
@@ -46,3 +41,11 @@ git.commitall: git.addall
 	@if [ -n "$(shell git status -s)" ] ; then git commit -m 'saving'; else echo '--- nothing to commit'; fi
 git.addall:
 	@git add .
+
+
+
+# ################
+# Any submodule
+%:
+	@echo [ AUTODETECTION: $@ ]
+	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
