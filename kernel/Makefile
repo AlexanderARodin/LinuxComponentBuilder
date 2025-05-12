@@ -6,6 +6,7 @@ menu:
 	@cd $(LINUX_KERNEL_SOURCE) && $(MAKE) menuconfig
 
 all: clean build import
+	@echo '<--'
 
 clean:
 	@mkdir -p $(KERNEL_AND_MODULES)

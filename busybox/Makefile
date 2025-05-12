@@ -5,6 +5,9 @@ include ~/.lcb-env
 menu:
 	@cd $(BUSYBOX_SOURCE) && $(MAKE) menuconfig
 
+all: clean push build import su_clean su_push su_build su_import
+	@echo '<--'
+
 clean:
 	@rm -f $(TARGET_DIR)/busybox
 pull:
@@ -27,4 +30,3 @@ su_build:
 su_import:
 	@cp -f $(BUSYBOX_SOURCE)/busybox $(TARGET_DIR)/busybox.suid
 
-all: push build import su_push su_build su_import

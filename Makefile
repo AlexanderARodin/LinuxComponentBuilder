@@ -6,6 +6,11 @@ help:
 	@echo 'empty help (still)'
 
 # ################
+# UUtils CoreUtils
+uutils.all:
+	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
+
+# ################
 # BusyBox
 busybox.menu:
 	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
