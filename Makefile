@@ -30,11 +30,15 @@ env:
 dev:
 	@nvim Makefile
 
-# ################
+# ######et -e
+#   3
+#     2 [ -z $1 ] && exit 1
+#       1 echo $1#########
 # GIT
 pull:
 	@git pull
 savetogit: git.pushall
+	@echo '<--'
 git.pushall: git.commitall
 	@git push
 git.commitall: git.addall
