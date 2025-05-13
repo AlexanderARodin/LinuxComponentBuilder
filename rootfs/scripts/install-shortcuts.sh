@@ -7,16 +7,16 @@ cd $1		# enter target directory
 # INSTALL shortcuts
 install_applets() {
 	if [ -f $1 ]; then
-		echo " [ INSTALL $1 ] "
+		echo " [ INSTALL $1 --> ] "
 		APPLETS_LIST=$(./$1 --list)
 		for l in $APPLETS_LIST
 		do
 			ln -vsr ./$1 $l
 		done
+		echo "<-- INSTALLED $1"
 	else
 		echo " [ no applets for: $1 ] "
 	fi
-	echo "<--"
 }
 
 install_applets "busybox"
