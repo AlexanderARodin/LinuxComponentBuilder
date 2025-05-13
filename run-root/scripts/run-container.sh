@@ -11,12 +11,12 @@ echo '# [ ENTERING ROOT ] #'
 
 case $1 in
 	--chroot)
-		sudo env -i \
+		sudo -k env -i \
 			/sbin/chroot "$ROOT_DIR_PATH" "$CMD"
 		;;
 
 	--unshare-root)
-		sudo env -i \
+		sudo -k env -i \
 			unshare --fork \
 				--mount --uts --ipc --net --pid --mount-proc \
 				--root="$ROOT_DIR_PATH" \

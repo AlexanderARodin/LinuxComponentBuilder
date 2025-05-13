@@ -6,11 +6,14 @@ menu:
 	@echo 'there is no Menu'
 	@exit 1
 
-user.shell: #chroot-init
+shell.user:
 	@scripts/run-container.sh --unshare-user \
 		$(ROOT_FS) \
 		/bin/sh
-		#'/init'
+shell.root:
+	@scripts/run-container.sh --unshare-root \
+		$(ROOT_FS) \
+		/bin/sh
 
 # #######################################
 # TODO
