@@ -6,39 +6,36 @@ help:
 	@echo 'empty help (still)'
 
 # ################
-# UUtils CoreUtils
-uutils.all:
-	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
-
-# ################
-# BusyBox
-busybox.menu:
-	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
-busybox.all:
-	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
-
-# ################
-# Kernel
-kernel.menu:
-	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
-kernel.all:
-	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
-
-
-
-
-
-# ################
 # Tuning
 env:
 	@nvim ~/.lcb-env
 dev:
 	@nvim Makefile
 
-# ######et -e
-#   3
-#     2 [ -z $1 ] && exit 1
-#       1 echo $1#########
+
+# ################
+# Main target parts
+rootfs.all:
+	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
+
+uutils.all:
+	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
+
+busybox.all:
+	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
+
+kernel.all:
+	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
+
+
+# ################
+# Any submodule
+%:
+	@echo [ AUTODETECTION: $@ ]
+	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
+
+
+# ################
 # GIT
 pull:
 	@git pull
@@ -51,10 +48,3 @@ git.commitall: git.addall
 git.addall:
 	@git add .
 
-
-
-# ################
-# Any submodule
-%:
-	@echo [ AUTODETECTION: $@ ]
-	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
