@@ -1,5 +1,4 @@
 include ~/.lcb-env
-
 # ################
 # HELP
 help:
@@ -7,33 +6,28 @@ help:
 
 # ################
 # Tuning
-env:
-	@nvim ~/.lcb-env
 dev:
 	@nvim Makefile
-
 
 # ################
 # Main target parts
 rootfs.all:
 	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
-
 uutils.all:
 	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
-
 busybox.all:
 	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
-
 kernel.all:
 	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
 
+image.initrd:
+	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
 
 # ################
 # Any submodule
 %:
 	@echo [ AUTODETECTION: $@ ]
 	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
-
 
 # ################
 # GIT
