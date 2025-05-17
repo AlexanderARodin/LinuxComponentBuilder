@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# # # # # # # # # # # # # #
+# system dirs
+[ -d /proc ]	|| mkdir			/proc
+[ -d /sys ]		|| mkdir			/sys
+[ -d /dev ]		|| mkdir -m 0755	/dev
+
+# # # # # # # # # # # # # #
+# mounts
+mount -t proc 			proc	/proc		-o nodev,noexec,nosuid
+mount -t sysfs			sysfs	/sys		-o nodev,noexec,nosuid
+mount -t devtmpfs		udev	/dev
+
+# # # # # # # # # # # # # #
+# must mounted after /dev
+[ -d /dev/pts ]	|| mkdir -p			/dev/pts
+mount -t devpts			devpts	/dev/pts	-o noexec,nosuid,gid=5,mode=0620
+
+# # # # # # # # # # # # # #
+# shell
+export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+export LANG=C
+export LC_ALL=C
+
+exec setsid cttyhack /bin/sh -o vi

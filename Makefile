@@ -8,10 +8,12 @@ help:
 # Tuning
 dev:
 	@nvim Makefile
+run-root.init.user:
+	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
 
 # ################
 # Main target parts
-rootfs.all:
+rootfs.allin:
 	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)
 uutils.all:
 	@$(MAKE) -C $(shell ./scripts/main-target.sh $@) $(shell ./scripts/sub-target.sh $@)

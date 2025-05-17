@@ -6,7 +6,7 @@ menu:
 	@echo 'there is no Menu'
 	@exit 1
 
-all: clean modules corebox
+allin: clean modules corebox init-minimal
 	@echo '<--'
 
 clean:
@@ -23,4 +23,8 @@ corebox:
 	@cp -v $(TARGET_DIR)/busybox      $(ROOT_FS)/bin/
 	@cp -v $(TARGET_DIR)/busybox.suid $(ROOT_FS)/bin/	|| true
 	@cp -v $(TARGET_DIR)/coreutils    $(ROOT_FS)/bin/
-	@scripts/install-shortcuts.sh $(ROOT_FS)/bin/
+	@scripts/install-shortcuts.sh     $(ROOT_FS)/bin/
+
+init-minimal:
+	@cp -v assets/init-minimal        $(ROOT_FS)/init
+	@chmod +x $(ROOT_FS)/init

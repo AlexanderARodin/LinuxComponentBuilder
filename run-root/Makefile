@@ -15,6 +15,11 @@ shell.root:
 		$(ROOT_FS) \
 		/bin/sh
 
+init.user:
+	@scripts/run-container.sh --unshare-user \
+		$(ROOT_FS) \
+		/init
+
 # #######################################
 # TODO
 #chroot.hardcore:
