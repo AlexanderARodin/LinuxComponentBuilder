@@ -1,0 +1,3 @@
+# dirs to ignore
+debug/
+target/
